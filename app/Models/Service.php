@@ -11,4 +11,7 @@ class Service extends Model {
 
     protected $table = "services";
     protected $primaryKey = "Id";
+    public function physiotherapistservices() {
+        return $this->hasMany(Physiotherapistservices::class,"ServiceId");
+    }
 }

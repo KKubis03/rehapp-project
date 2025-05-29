@@ -28,7 +28,6 @@
             <button type="submit" class="my-login-submit mt-2">
                 Sign up
             </button>
-
             <p class="my-login-link mt-2">
                 Already have an account?
                 <a href="/login">Sign in</a>

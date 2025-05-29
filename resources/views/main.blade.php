@@ -11,6 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
 <body id="body" class="bg-light text-dark">
@@ -40,11 +41,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="/physiotherapists">Physiotherapists</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <div class="form-check form-switch text-white ms-2">
                                 <input class="form-check-input" type="checkbox" role="switch" id="themeSwitch">
                             </div>
-                        </li>
+                        </li> --}}
                         {{-- <li class="nav-item">
                             <div class="form-check form-switch text-white ms-2">
                                 <input class="form-check-input" type="checkbox" role="switch" id="langSwitch">
@@ -59,12 +60,14 @@
         </nav>
     @endauth
     @yield ("content")
-    <script src="/js/bootstrap.min.js"></script>
+    {{--
+    <script src="/js/bootstrap.min.js"></script> --}}
     <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
 
+{{--
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const themeSwitch = document.getElementById('themeSwitch');
@@ -110,4 +113,4 @@
             });
         }
     });
-</script>
+</script> --}}

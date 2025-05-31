@@ -11,13 +11,10 @@ class Patient extends Model {
 
     protected $table = "patients";
     protected $primaryKey = "Id";
-    // Relacja: jeden pacjent ma wiele wizyt
-    // public function appointments() {
-    //     return $this->hasMany(Appointment::class, 'PatientId');
-    // }
-
-    // Liczba wizyt
-    // public function appointmentsCount() {
-    //     return $this->appointments()->count();
-    // }
+    public function appointments() {
+        return $this->hasMany(Appointment::class, 'PatientId', 'Id');
+    }
+    public function appointmentsCount() {
+        return $this->appointments()->count();
+    }
 }

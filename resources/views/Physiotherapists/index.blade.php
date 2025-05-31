@@ -35,8 +35,8 @@
                         </li>
                     </ul>
                     <div class="card-body">
-                        <a type="button" class="btn btn-primary fw-semibold" href="/physiotherapists/details/{{ $item->Id }}"><i
-                                class="bi bi-info-lg me-2"></i>Read More</a>
+                        <a type="button" class="btn btn-primary fw-semibold"
+                            href="/physiotherapists/details/{{ $item->Id }}">Read More</a>
                     </div>
                 </div>
             @endforeach

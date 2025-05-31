@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Services\PhysiotherapistService;
 use App\Services\ServicesService;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PhysiotherapistController extends Controller
 {

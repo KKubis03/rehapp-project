@@ -14,4 +14,7 @@ class Service extends Model {
     public function physiotherapistservices() {
         return $this->hasMany(Physiotherapistservices::class,"ServiceId");
     }
+    public function appointments() {
+        return $this->hasMany(Appointment::class, 'ServiceId', 'Id');
+    }
 }

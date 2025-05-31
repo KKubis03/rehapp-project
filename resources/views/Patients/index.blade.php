@@ -32,7 +32,7 @@
                             <div class="col"><i class="bi bi-envelope me-2"></i>{{ $model->Email }}</div>
                             <div class="col"><i class="bi bi-telephone me-2"></i>{{ $model->PhoneNumber }}</div>
                             <div class="col-auto">
-                                <span class="badge text-bg-primary rounded-pill">{{ $model->Appointments }}12</span>
+                                <span class="badge text-bg-primary rounded-pill">{{ $model->appointmentsCount() }}</span>
                             </div>
                         </div>
                     </a>

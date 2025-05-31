@@ -3,7 +3,10 @@
         <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#{{ $id }}" aria-expanded="true" aria-controls="{{ $id }}">
-                <strong>{{ $title }}</strong><span class="lead fs-6 ms-1"> - {{ $shortDescription }} </span>
+                <strong class="me-2 fw-semibold">{{ $title }} </strong> <span class="lead fs-6 ms-1">
+                    -
+                    {{ $shortDescription }}
+                </span>
             </button>
         </h2>
         <div id="{{ $id }}" class="accordion-collapse collapse">

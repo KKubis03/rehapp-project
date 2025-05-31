@@ -30,7 +30,7 @@
         </h4>
         <h3 class="m-4 text-primary">Services:</h3>
         @foreach ($model->services as $service)
-            <h4 class="ms-3">
+            <h4 class="ms-4">
                 <li>{{ $service->ServiceName }}</li>
             </h4>
         @endforeach

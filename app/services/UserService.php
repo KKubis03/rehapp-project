@@ -29,7 +29,7 @@ class UserService {
         $model = new MyUser();
         $model->Login = $request->input("Login");
         $model->Password = Hash::make($request->input("Password"));
-        $model->RoleId = 1;
+        $model->IsAdmin = false;
         $model->IsActive = true;
         $model->save();
     }

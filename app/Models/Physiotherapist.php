@@ -26,4 +26,7 @@ class Physiotherapist extends Model {
         ->withTimestamps()
         ->wherePivot('IsActive', true);
     }
+    public function appointments() {
+        return $this->hasMany(Appointment::class, 'PhysiotherapistId', 'Id');
+    }
 }

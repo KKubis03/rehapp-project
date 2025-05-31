@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PhysiotherapistController;
@@ -33,6 +35,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/patients/edit/{id}', [PatientController::class, "edit"]);
     Route::post('/patients/edit/{id}', [PatientController::class, "updateToDB"]);
     Route::post('/patients/delete/{id}', [PatientController::class, "delete"]);
+    // Appointments Routes
+    Route::get('/appointments', [AppointmentController::class, 'index']);
+    Route::get('/appointments/create', [AppointmentController::class, 'create']);
+    Route::get('/appointments/availableHours', [AppointmentController::class, 'getAvailableHours']);
+    Route::post('/appointments/create', [AppointmentController::class, 'addToDB']);
+    Route::get('/appointments/edit/{id}', [AppointmentController::class, 'edit']);
+    Route::post('/appointments/edit/{id}', [AppointmentController::class, 'updateToDB']);
+    Route::post('/appointments/delete/{id}', [AppointmentController::class, 'delete']);
 });
 Route::get('/logout', function () {
     Auth::logout();

@@ -27,10 +27,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link {{ request()->is('/') ? 'text-primary fw-bold' : 'text-dark' }}"
                                 aria-current="page" href="/">Home</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('patients*') ? 'text-primary fw-bold' : 'text-dark' }}"
                                 href="/patients">Patients</a>
@@ -46,6 +46,10 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('physiotherapists*') ? 'text-primary fw-bold' : 'text-dark' }}"
                                 href="/physiotherapists">Physiotherapists</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('/profile*') ? 'text-primary fw-bold' : 'text-dark' }}"
+                                href="/profile">Profile</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('logout*') ? 'text-primary fw-bold' : 'text-dark' }}"

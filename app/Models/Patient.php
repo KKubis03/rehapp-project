@@ -15,6 +15,6 @@ class Patient extends Model {
         return $this->hasMany(Appointment::class, 'PatientId', 'Id');
     }
     public function appointmentsCount() {
-        return $this->appointments()->count();
+        return $this->appointments()->where('isActive','=',true)->count();
     }
 }

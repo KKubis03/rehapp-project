@@ -19,6 +19,18 @@ class HomeController extends Controller
         }
         return view("home.index",['title' => 'Rehapp - Home']);
     }
+    public function profile() {
+        $model = Auth::user();
+        return view("home.profile",['title' => 'Rehapp - Profile', 'user' => $model]);
+    }
+    public function editLogin(Request $request, int $id) {
+        $this->service->editLogin($request, $id);
+        return redirect("/profile")->with('success', 'Login changed succesfully.');
+    }
+    public function editPassword(Request $request, int $id) {
+        $this->service->editPassword($request, $id);
+        return redirect("/profile")->with('success', 'Password changed succesfully.');
+    }
     public function login() {
         return view("home.login",['title' => 'Rehapp - Sign in']);
     }
@@ -61,5 +73,9 @@ class HomeController extends Controller
         }
         $this->service->create($request);
         return redirect('/login')->with('success', 'Account created successfully.');
+    }
+    public function delete(int $id) {
+        $this->service->delete($id);
+        return redirect("/logout");
     }
 }

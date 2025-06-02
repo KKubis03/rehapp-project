@@ -42,6 +42,7 @@ class AppointmentService {
         });
         return array_values($availableHours);
     }
+    
     public function create(Request $request) {
         $request->validate([
             'Patient' => ['required'],

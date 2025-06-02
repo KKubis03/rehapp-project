@@ -138,4 +138,8 @@ class PhysiotherapistService {
             ->update(['IsActive' => false]);
         $model->save();
     }
+    public function getPhysiotherapistServicesIds(int $id) {
+        $servicesIds = Physiotherapistservices::where('PhysiotherapistId','=',$id)->pluck('ServiceId');
+        return $servicesIds;
+    }
 }

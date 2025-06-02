@@ -13,6 +13,10 @@ Route::get('/register', [HomeController::class, "register"]);
 Route::post('/register/create', [HomeController::class, "addToDB"]);
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index']);
+    Route::get('/profile', [HomeController::class, 'profile']);
+    Route::post('/profile/edit/login/{id}', [HomeController::class, 'editLogin']);
+    Route::post('/profile/edit/password/{id}', [HomeController::class, 'editPassword']);
+    Route::post('/profile/delete/{id}', [HomeController::class, 'delete']);
     // Services Routes
     Route::get('/services', [ServicesController::class, 'index']);
     Route::get('/services/create', [ServicesController::class, 'create']);
@@ -39,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/appointments', [AppointmentController::class, 'index']);
     Route::get('/appointments/create', [AppointmentController::class, 'create']);
     Route::get('/appointments/availableHours', [AppointmentController::class, 'getAvailableHours']);
+    Route::get('/appointments/physiotherapistServices', [AppointmentController::class, 'getPhysiotherapistServices']);
     Route::post('/appointments/create', [AppointmentController::class, 'addToDB']);
     Route::get('/appointments/edit/{id}', [AppointmentController::class, 'edit']);
     Route::post('/appointments/edit/{id}', [AppointmentController::class, 'updateToDB']);

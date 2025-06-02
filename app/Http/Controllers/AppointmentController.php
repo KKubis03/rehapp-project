@@ -62,6 +62,16 @@ class AppointmentController extends Controller
         );
         return response()->json($hours);
     }
+    public function getPhysiotherapistServices(Request $request) {
+        $physioService = new PhysiotherapistService();
+        $servicesService = new ServicesService();
+        $servicesIds = $physioService->getPhysiotherapistServicesIds((int) $request->input('Physiotherapist'));
+        $services = [];
+        foreach($servicesIds as $serviceId) {
+            $services[] = $servicesService->getById2($serviceId);
+        }
+        return response()->json($services);
+    }
     public function delete(int $id) {
         $this->service->delete($id);
         return redirect("/appointments");

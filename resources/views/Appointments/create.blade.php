@@ -18,6 +18,18 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label class="form-label">Physiotherapist</label>
+                <select class="form-select" name="Physiotherapist" id="physiotherapist_id">
+                    @foreach ($physiotherapists as $physiotherapist)
+                        <option value="{{$physiotherapist->Id}}" {{ in_array($physiotherapist->Id, old('services', [])) ? 'selected' : '' }}>{{$physiotherapist->FirstName}} {{$physiotherapist->LastName}}
+                        </option>
+                    @endforeach
+                </select>
+                @error('Physiotherapist')
+                    <div class="text-danger small ms-1">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
                 <label class="form-label">Service</label>
                 <select class="form-select" name="Service">
                     @foreach ($services as $service)
@@ -31,21 +43,9 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label class="form-label">Physiotherapist</label>
-                <select class="form-select" name="Physiotherapist" id="physiotherapist_id">
-                    @foreach ($physiotherapists as $physiotherapist)
-                        <option value="{{$physiotherapist->Id}}" {{ in_array($physiotherapist->Id, old('services', [])) ? 'selected' : '' }}>{{$physiotherapist->FirstName}} {{$physiotherapist->LastName}}
-                        </option>
-                    @endforeach
-                </select>
-                @error('Physiotherapist')
-                    <div class="text-danger small ms-1">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="mb-3">
                 <label class="form-label">Date</label>
                 <input type="text" class="form-control w-25" name="Date" value="{{ old('Date') }}"
-                    placeholder="-- Select Date --" id="datepicker">
+                    placeholder="-- Select Date --" id="datepicker" autocomplete="off">
                 @error('Date')
                     <div class="text-danger small ms-1">{{ $message }}</div>
                 @enderror
@@ -115,6 +115,43 @@
                 }
             });
 
+            function fetchPhysiotherapistServices() {
+                const physioId = document.getElementById('physiotherapist_id').value;
+                const serviceSelect = document.querySelector('select[name="Service"]');
+
+                if (!physioId) {
+                    serviceSelect.innerHTML = '<option value="">-- Select physiotherapist first --</option>';
+                    return;
+                }
+
+                fetch(`/appointments/physiotherapistServices?Physiotherapist=${physioId}`)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network response was not OK');
+                        return response.json();
+                    })
+                    .then(services => {
+                        serviceSelect.innerHTML = '';
+
+                        if (services.length === 0) {
+                            serviceSelect.innerHTML = '<option value="">No services available</option>';
+                            return;
+                        }
+
+                        services.forEach(service => {
+                            const option = document.createElement('option');
+                            option.value = service.Id;
+                            option.textContent = `${service.ServiceName}`;
+                            serviceSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching services:', error);
+                        serviceSelect.innerHTML = '<option value="">Error loading services</option>';
+                    });
+            }
+
+
+
             // Function to download available hours
             function fetchAvailableHours() {
                 const physioSelect = document.getElementById('physiotherapist_id');
@@ -154,7 +191,13 @@
                     });
             }
             // listening to change of selected physiotherapist
-            $('#physiotherapist_id').on('change', fetchAvailableHours);
+            //$('#physiotherapist_id').on('change', fetchAvailableHours);
+            $('#physiotherapist_id').on('change', function () {
+                fetchAvailableHours();
+                fetchPhysiotherapistServices();
+            });
+            fetchAvailableHours();
+            fetchPhysiotherapistServices();
         });
     </script>
 

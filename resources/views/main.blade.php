@@ -48,7 +48,7 @@
                                 href="/physiotherapists">Physiotherapists</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('/profile*') ? 'text-primary fw-bold' : 'text-dark' }}"
+                            <a class="nav-link {{ request()->is('profile*') ? 'text-primary fw-bold' : 'text-dark' }}"
                                 href="/profile">Profile</a>
                         </li>
                         <li class="nav-item">

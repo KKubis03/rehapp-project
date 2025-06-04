@@ -54,11 +54,13 @@ class UserService {
             abort(403);
         }
         if (!Hash::check($request->input('OldPassword'), $user->Password)) {
-            return back()->withErrors(['OldPassword' => 'Old password is invalid.']);
+            return false;
+            //return back()->withErrors(['OldPassword' => 'Old password is invalid.']);
         }
         $model = MyUser::find($id);
         $model->Password = Hash::make($request->input("NewPassword"));
         $model->save();
+        return true;
     }
     public function delete(int $id) {
         $model = MyUser::find($id);

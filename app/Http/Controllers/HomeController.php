@@ -28,8 +28,10 @@ class HomeController extends Controller
         return redirect("/profile")->with('success', 'Login changed succesfully.');
     }
     public function editPassword(Request $request, int $id) {
-        $this->service->editPassword($request, $id);
-        return redirect("/profile")->with('success', 'Password changed succesfully.');
+        if($this->service->editPassword($request, $id)) {
+            return redirect("/profile")->with('success', 'Password changed succesfully.');
+        }
+        return redirect('/profile')->withErrors(['OldPassword' => 'Invalid old password']);
     }
     public function login() {
         return view("home.login",['title' => 'Rehapp - Sign in']);

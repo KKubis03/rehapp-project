@@ -26,7 +26,7 @@ class UserService {
     }
     public function editLogin(Request $request, int $id) {
         $request->validate([
-            'Login' => ['required', 'min:1'], //  'regex:/^[^\d][A-Za-z0-9_]{2,}$/'
+            'Login' => ['required', 'min:6','regex:/^[^\d][A-Za-z0-9_]{2,}$/'], //  'regex:/^[^\d][A-Za-z0-9_]{2,}$/'
         ], [
             'Login.regex' => 'Login can not start with a digit and should contain only letters and numbers',
             'Login.min' => 'Login must be at least 6 characters.',
@@ -41,8 +41,8 @@ class UserService {
     }
     public function editPassword(Request $request, int $id) {
         $request->validate([
-            'OldPassword' => ['required', 'min:1'], // 'regex:/^(?=.*[A-Z])(?=.*\d).+$/'
-            'NewPassword' => ['required', 'min:1'], // 'regex:/^(?=.*[A-Z])(?=.*\d).+$/'
+            'OldPassword' => ['required', 'min:6','regex:/^(?=.*[A-Z])(?=.*\d).+$/'], // 'regex:/^(?=.*[A-Z])(?=.*\d).+$/'
+            'NewPassword' => ['required', 'min:6','regex:/^(?=.*[A-Z])(?=.*\d).+$/'], // 'regex:/^(?=.*[A-Z])(?=.*\d).+$/'
             'ConfirmPassword' => ['required', 'same:NewPassword'],
         ], [
             'NewPassword.min' => 'Password must be at least 6 characters.',
@@ -51,7 +51,7 @@ class UserService {
         ]);
         $user = Auth::user();
         if ($user->Id !== $id) {
-            abort(403);
+            abort(403); // forbidden
         }
         if (!Hash::check($request->input('OldPassword'), $user->Password)) {
             return false;

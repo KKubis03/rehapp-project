@@ -9,7 +9,7 @@ class AppointmentService {
     public function get(?string $search): Collection {
         $models = Appointment::where("IsActive", "=",true);
         if($search) {
-            $models = $models->where("Description","like","%$search%");
+            $models = $models->where("AppointmentDate","like","%$search%");
         }
         return $models->get();
     }

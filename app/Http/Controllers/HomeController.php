@@ -59,8 +59,8 @@ class HomeController extends Controller
     }
     public function addToDB(Request $request) {
         $request->validate([
-            'Login' => ['required', 'min:1'], //  'regex:/^[^\d][A-Za-z0-9_]{2,}$/'
-            'Password' => ['required', 'min:1'], // 'regex:/^(?=.*[A-Z])(?=.*\d).+$/'
+            'Login' => ['required', 'min:6','regex:/^[^\d][A-Za-z0-9_]{2,}$/'], //  'regex:/^[^\d][A-Za-z0-9_]{2,}$/'
+            'Password' => ['required', 'min:6','regex:/^(?=.*[A-Z])(?=.*\d).+$/'], // 'regex:/^(?=.*[A-Z])(?=.*\d).+$/'
             'ConfirmPassword' => ['required', 'same:Password'],
         ], [
             'Login.regex' => 'Login can not start with a digit and should contain only letters and numbers',

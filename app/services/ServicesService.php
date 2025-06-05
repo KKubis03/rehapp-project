@@ -18,16 +18,12 @@ class ServicesService {
             'ServiceName' => ['required'],
             'ShortDescription' => ['required', 'max:255'],
             'Description' => ['required'],
-            'Duration' => ['required', 'date_format:H:i'],
         ], [
             'ShortDescription.max' => 'Short description is too long.',
-            'Duration.required' => 'Duration is required.',
-            'Duration.date_format' => 'Duration must be in the format HH:MM.',
         ]);
         $model->ServiceName = $request->input('ServiceName');
         $model->ShortDescription = $request->input('ShortDescription');
         $model->Description = $request->input('Description');
-        $model->Duration = $request->input('Duration');
         $model->IsActive = true;
         $model->save();
     }

@@ -84,11 +84,11 @@
                         var formattedDate = y + "-" + m + "-" + d;
                         // Disable weekends
                         if (day === 0 || day === 6) {
-                            return [false, "", "Weekend - niedostępne"];
+                            return [false, "", "Weekend - non available"];
                         }
                         // Disable holidays
                         if (holidays.indexOf(formattedDate) !== -1) {
-                            return [false, "", "Święto - niedostępne"];
+                            return [false, "", "Holiday - non available"];
                         }
                         return [true, ""];
                     },
@@ -109,7 +109,6 @@
                     initDatepicker();
                 },
                 error: function () {
-                    alert('Nie udało się pobrać świąt.');
                     holidays = [];
                     initDatepicker();
                 }
@@ -191,7 +190,6 @@
                     });
             }
             // listening to change of selected physiotherapist
-            //$('#physiotherapist_id').on('change', fetchAvailableHours);
             $('#physiotherapist_id').on('change', function () {
                 fetchAvailableHours();
                 fetchPhysiotherapistServices();

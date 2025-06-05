@@ -8,7 +8,7 @@
     <div class="container-fluid-lg p-2">
         <form>
             <div class="d-flex flex-row ps-5 pt-1 pe-5">
-                <input placeholder="asd" class="form-control w-25" name="search" value="{{ $search }}">
+                <input placeholder="Date" class="form-control w-25" name="search" value="{{ $search }}">
                 @if(request()->has('search') && request('search') != '')
                     <a href="/appointments"
                         class="btn btn-outline-secondary d-flex align-items-center justify-content-center ms-1"><i
